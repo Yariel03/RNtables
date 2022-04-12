@@ -3,13 +3,14 @@ import { View, Text, FlatList, ScrollView } from 'react-native'
 import { useTable } from './hook'
 import { IUser } from './interface/IUser'
 import { styles } from './style'
-export const Table: any = () => {
-  const { data, title } = useTable();
+
+
+export const Table = ({ datos, modelo, acciones }: any) => {
 
   const renderHeader = ({ item, index }: any) => {
     return (
-      <View style={[styles.celdas, styles.celdaHeader]} key={index} >
-        <Text style={styles.textHeader}>{item.name}</Text>
+      <View style={[styles.celdas, styles.celdaHeader]} key={index}  >
+        <Text style={styles.textHeader} key={Math.random()}>{item.name}</Text>
       </View>
     )
   }
@@ -17,33 +18,22 @@ export const Table: any = () => {
 
   const renderBody = ({ item, index }: any) => {
     return (
-
       <View style={[styles.row, (index % 2 !== 0) ? styles.celdaPar : null]} key={index}>
-
-        <View style={styles.celdas} >
-          <Text style={styles.textBody}>{item.id}</Text>
+        <View style={styles.celdas}  >
+          {/* <Text style={styles.textBody}>{index + 1}</Text> */}
+          {acciones(item)}
         </View>
-
-        <View style={styles.celdas}>
-          <Text style={styles.textBody}>{item.name}</Text>
+        <View style={styles.celdas}  >
+          <Text style={styles.textBody}>{index + 1}</Text>
+          {/* {acciones(item)} */}
         </View>
-
-        <View style={styles.celdas}>
-          <Text style={styles.textBody}>{item.lastName}</Text>
-        </View>
-
-        <View style={styles.celdas}>
-          <Text style={styles.textBody}>{item.age}</Text>
-        </View>
-
-        <View style={styles.celdas}>
-          <Text style={styles.textBody}>{item.email}</Text>
-        </View>
-
-        <View style={styles.celdas}>
-          <Text style={styles.textBody}>{item.active.toString()}</Text>
-        </View>
-
+        {modelo.map((pro: any, index: any) => (
+          (pro.modelo) ? (
+            <View style={styles.celdas} key={index} >
+              <Text style={styles.textBody}>{(item[pro.property]).toString()}</Text>
+            </View>
+          ) : (null)
+        ))}
       </View>
     )
   }
@@ -66,13 +56,13 @@ export const Table: any = () => {
   }
 
   const listadoHeader = () => {
-    return (title.map((item, index) => {
+    return (modelo.map((item: any, index: number) => {
       return (renderHeader({ item, index }))
     }))
   }
 
   const listadoBody = () => {
-    return (data.map((item: IUser, index: number) => {
+    return (datos.map((item: IUser, index: number) => {
       return (renderBody({ item, index }))
     }))
   }

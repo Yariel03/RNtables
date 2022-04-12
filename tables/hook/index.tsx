@@ -3,27 +3,62 @@ import React from 'react'
 import { IUser } from '../interface/IUser'
 
 export const useTable = () => {
-    const title =
-        [{
-            name: 'ID',
-        },
-        {
-            name: 'NOMBRE',
-        },
-        {
-            name: 'APELLIDO',
-        },
-        {
-            name: 'EDAD',
-        },
-        {
-            name: 'CORREO',
-        },
-        {
-            name: 'ACTIVO',
-        }
-        ]
-
+    // const title =
+    //     [{
+    //         name: 'ID',
+    //     },
+    //     {
+    //         name: 'NOMBRE',
+    //     },
+    //     {
+    //         name: 'APELLIDO',
+    //     },
+    //     {
+    //         name: 'EDAD',
+    //     },
+    //     {
+    //         name: 'CORREO',
+    //     },
+    //     {
+    //         name: 'ACTIVO',
+    //     }
+    //     ]
+    const propertyJson =
+        [
+            {
+                name: 'Acciones',
+                property: '',
+                modelo: false
+            }, {
+                name: '#',
+                property: '',
+                modelo: false
+            }, {
+                name: 'Codigo',
+                property: 'id',
+                modelo: true
+            },
+            {
+                name: 'Nombre',
+                property: 'name',
+                modelo: true
+            }, {
+                name: 'Apellido',
+                property: 'lastName',
+                modelo: true
+            }, {
+                name: 'Edad',
+                property: 'age',
+                modelo: true
+            }, {
+                name: 'Correo',
+                property: 'email',
+                modelo: true
+            }, {
+                name: 'Activo',
+                property: 'active',
+                modelo: true
+            },]
 
 
     const data: IUser[] = [
@@ -418,6 +453,6 @@ export const useTable = () => {
 
 
     return (
-        { data, title }
+        { data, propertyJson }
     )
 }

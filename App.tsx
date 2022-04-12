@@ -1,13 +1,22 @@
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import { Button, StyleSheet, Text, View } from 'react-native';
+import { useTable } from './tables/hook';
 import { Table } from './tables/Index';
 
 export default function App() {
+  const { data, propertyJson } = useTable();
+
+  const renderButton = (json: any) => {
+    return (
+      <Button title='Press' onPress={() => (alert("Hola" + JSON.stringify(json)))} />
+    )
+  }
+
   return (
     <View style={styles.container}>
-      {/* <Text>Open up App.tsx to start working on your app!</Text> */}
-      <Table></Table>
-      {/* <StatusBar style="auto" /> */}
+      {/* {renderButton()} */}
+      <Table datos={data} modelo={propertyJson} acciones={renderButton}></Table>
+      <StatusBar style="auto" />
     </View>
   );
 }
