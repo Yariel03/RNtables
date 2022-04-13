@@ -1,5 +1,5 @@
 import { StatusBar } from 'expo-status-bar';
-import { Button, StyleSheet, Text, View } from 'react-native';
+import { Button, SafeAreaView, SafeAreaViewBase, StyleSheet, Text, View } from 'react-native';
 import { useTable } from './tables/hook';
 import { Table } from './tables/Index';
 
@@ -13,11 +13,12 @@ export default function App() {
   }
 
   return (
-    <View style={styles.container}>
+
+    <SafeAreaView style={styles.container}>
       {/* {renderButton()} */}
       <Table datos={data} modelo={propertyJson} acciones={renderButton}></Table>
-      <StatusBar style="auto" />
-    </View>
+      {/* <StatusBar style="auto" /> */}
+    </SafeAreaView>
   );
 }
 
